@@ -1,0 +1,59 @@
+.bookItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 60%;
+    height: 180px;
+    background-color: white;
+    color: black;
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 10px;
+}
+.bookPriceName{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.bookDesc{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.addToCart{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.price,.name{
+    width: 60%;
+    height: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.price{
+    width: 20%;
+    justify-content: center;
+    background-color: rgb(77, 77, 77);
+    color: white;
+    border-radius: 30px;
+}
+.addToCartBtn{
+    width: 40%;
+    outline: none;
+    border: none;
+    color: rgb(0, 183, 255);
+    border: 1px solid rgb(0, 183, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+}

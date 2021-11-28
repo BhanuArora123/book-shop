@@ -1,4 +1,5 @@
 import BookItem from "./BookItem";
+import classes from "./BookList.module.css";
 
 const BookList = props => {
     const Books = [
@@ -16,7 +17,8 @@ const BookList = props => {
         }
     ]
     return (
-        <div>
+        <section className={classes["bookList"]}>
+            <h1 className={classes["bookListHead"]}>Buy Your Favourite Product</h1>
             {
                 Books.map(book => {
                     return (
@@ -28,7 +30,7 @@ const BookList = props => {
                     )
                 })
             }
-        </div>
+        </section>
     )
 }
 export default BookList;
