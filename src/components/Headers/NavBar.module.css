@@ -1,0 +1,21 @@
+.navbar{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: rgb(20, 20, 20);
+    color: white;
+    align-items: center;
+}
+.subNav{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    align-items: center;
+}
+.subNav h1{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}

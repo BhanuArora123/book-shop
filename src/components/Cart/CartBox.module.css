@@ -1,0 +1,23 @@
+.cartBox{
+    display: flex;
+    justify-content: space-around;
+    color: aqua;
+    border: 2px solid aqua;
+    align-items: center;
+    width: 150px;
+    height: 40px;
+}
+.cartBoxHead{
+    display: flex;
+    justify-content: center;
+    width: 60%;
+    align-items: center;
+}
+.cartBoxCount{
+    display: flex;
+    justify-content: center;
+    background-color: aqua;
+    color: rgb(20, 20, 20);
+    border-radius: 10px;
+    width: 20%;
+}
