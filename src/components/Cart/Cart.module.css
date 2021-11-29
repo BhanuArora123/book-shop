@@ -1,0 +1,29 @@
+.cart{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    flex-direction: column;
+    width: 50%;
+    height: 550px;
+}
+.cartHead{
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    height: 30px;
+    align-items: center;
+    font-size: 1.8rem;
+    color: white;
+}
+.cartSection{
+    width: 100%;
+    height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cartLengthZero{
+    display: none;
+}

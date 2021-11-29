@@ -1,38 +1,33 @@
 import CartItem from "./CartItem";
+import classes from "./Cart.module.css";
+import { useSelector } from "react-redux";
 
 const Cart = props => {
-    const CartData = [
-        {
-            name:"BS Grewal",
-            desc:"a great book for jee advance aspirants ",
-            price:430,
-            key:0,
-            qty:1
-        },
-        {
-            name : "Concepts of Physics by HC Verma",
-            desc:"a very interesting and practical based book for physics",
-            price:370,
-            key:1,
-            qty:2
-        }
-    ]
+    const CartData = useSelector(state => state.cart.cart);
     return (
-        <div>
-            <h1>Your Shopping Cart</h1>
-            {
-                CartData.map((cartItem) => {
-                    return (
-                        <CartItem 
-                        name={cartItem.name} 
-                        key={cartItem.key}
-                        desc={cartItem.desc}
-                        price={cartItem.price}
-                        qty={cartItem.qty}/>
-                    )
-                })
-            }
-        </div>
+        <section className={CartData.length > 0?classes["cartSection"]:classes["cartLengthZero"]}>
+            <div className={ classes["cart"] }>
+                { CartData.length > 0 && <h1 className={ classes["cartHead"] }>Your Shopping Cart</h1>}
+                {
+                    CartData.map((cartItem) => {
+                        if(!cartItem){
+                            return (
+                                <></>
+                            )
+                        }
+                        return (
+                            <CartItem
+                                name={ cartItem.name }
+                                key={ cartItem.key }
+                                desc={ cartItem.desc }
+                                price={ cartItem.price }
+                                qty={ cartItem.qty } 
+                                id={cartItem.key}/>
+                        )
+                    })
+                }
+            </div>
+        </section>
     )
 }
 
