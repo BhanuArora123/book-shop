@@ -18,6 +18,7 @@ const cartReducer = createSlice({
         },
         addOne(state,action){
             state.cart[action.payload].qty++;
+            state.totalCartItems++;
         },
         removeOne(state,action){
             if(state.cart[action.payload].qty === 1){
@@ -26,6 +27,7 @@ const cartReducer = createSlice({
             else{
                 state.cart[action.payload].qty--;
             }
+            state.totalCartItems--;
         }
     }
 })

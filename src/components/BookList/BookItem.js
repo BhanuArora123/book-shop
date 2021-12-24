@@ -3,8 +3,28 @@ import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import classes from "./BookItem.module.css";
 import { useDispatch } from 'react-redux';
 import { cartActions } from '../../store/index';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import CartItem from '../Cart/CartItem';
 const BookItem = props => {
     const dispatch = useDispatch();
+    let cartItem = {
+        name:props.name,
+        desc:props.desc,
+        price:props.price,
+        key:props.id,
+        qty:1
+      };
+    let cart = useSelector(state => state.cart.cart);
+    useEffect(() => {
+    fetch("http://localhost:8080/addToCart",{
+      method : "POST",
+      headers : {
+        "Content-Type" : "application/json"
+      },
+      body : JSON.stringify(cartItem)
+    });
+  },[ cart ]);
     const addToCartHandler = () => {
         dispatch(cartActions.addToCart({
             name:props.name,
