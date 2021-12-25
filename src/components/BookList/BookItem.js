@@ -2,12 +2,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import classes from "./BookItem.module.css";
 import { useDispatch } from 'react-redux';
-import { cartActions } from '../../store/index';
+import store, { cartActions } from '../../store/index';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import CartItem from '../Cart/CartItem';
+import store1, { changeAction } from '../../store/changeCartStore';
+import { createStoreHook } from 'react-redux';
+import { createDispatchHook } from 'react-redux';
+// import CartItem from '../Cart/CartItem';
 const BookItem = props => {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
+    const useStore1 = createStoreHook();
+    const useStore2 = createStoreHook(store1);
+    const dispatch = createDispatchHook(store);
+    const dispatch1 = createDispatchHook(store1);
+    let cart = useStore1();
+    console.log(cart);
+    let isCartChanged = useStore2();
+    console.log(cart);
     let cartItem = {
         name:props.name,
         desc:props.desc,
@@ -15,16 +26,20 @@ const BookItem = props => {
         key:props.id,
         qty:1
       };
-    let cart = useSelector(state => state.cart.cart);
     useEffect(() => {
-    
-    fetch("http://localhost:8080/addToCart",{
-      method : "POST",
-      headers : {
-        "Content-Type" : "application/json"
-      },
-      body : JSON.stringify(cartItem)
-    });
+    async function addingToCart(){
+        if(isCartChanged){
+            dispatch1(changeAction.changeCartChanged());
+            await fetch("http://localhost:8080/addToCart",{
+            method : "POST",
+            headers : {
+              "Content-Type" : "application/json"
+            },
+            body : JSON.stringify({ cartItem })
+          });
+        }
+    };
+    addingToCart();
   },[ cart ]);
     const addToCartHandler = () => {
         dispatch(cartActions.addToCart({
@@ -34,6 +49,7 @@ const BookItem = props => {
             key:props.id,
             qty:1
         }))
+        dispatch1(changeAction.changeCartChanged());
     }
     return (
         <div className={classes["bookItem"]}>
