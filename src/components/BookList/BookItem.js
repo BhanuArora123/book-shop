@@ -17,6 +17,7 @@ const BookItem = props => {
       };
     let cart = useSelector(state => state.cart.cart);
     useEffect(() => {
+    
     fetch("http://localhost:8080/addToCart",{
       method : "POST",
       headers : {
