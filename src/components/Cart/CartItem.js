@@ -3,13 +3,38 @@ import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import classes from "./CartItem.module.css";
 import { useDispatch } from 'react-redux';
 import { cartActions } from '../../store';
+import { removeData, sendData } from '../../store/cart';
+import { useEffect, useState } from 'react';
 const CartItem = props => {
+    const [isCartChanged, setCartChanged] = useState(false);
+    const [remove, setRemoveCart] = useState(false);
     const dispatch = useDispatch();
+    let cartItem = {
+        name: props.name,
+        desc: props.desc,
+        price: props.price,
+        key: props.id,
+        qty: 1
+    };
+
+    useEffect(() => {
+        if (isCartChanged) {
+            setCartChanged(false);
+            dispatch(sendData(cartItem));
+        }
+    }, [isCartChanged,dispatch]);
+
+    useEffect(() => {
+        if (remove) {
+            setRemoveCart(false);
+            dispatch(removeData(props.id));
+        }
+    }, [remove,dispatch]);
     const addOneToCart = () => {
-        dispatch(cartActions.addOne(props.id));
+        setCartChanged(true);
     }
     const removeOneToCart = () => {
-        dispatch(cartActions.removeOne(props.id));
+        setRemoveCart(true);
     }
     return (
         <div className={classes["cartItem"]}>
